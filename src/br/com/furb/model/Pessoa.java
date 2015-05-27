@@ -7,6 +7,16 @@ public class Pessoa implements ModelToPersist {
 	private String cpf;
 	private int rg;
 	
+	public Pessoa(int rg, String nome, String email, String cpf) {
+		super();
+		this.nome = nome;
+		this.email = email;
+		this.cpf = cpf;
+		this.rg = rg;
+	}
+	
+	public Pessoa() {}
+
 	@Override
 	public int getId() {
 		return rg;

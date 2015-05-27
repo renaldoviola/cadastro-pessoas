@@ -9,8 +9,13 @@ public abstract class Dao <T extends ModelToPersist>{
 
 	private PersistenceStrategy<T> persistenceStrategy;
 	
+	public Dao(PersistenceStrategy<T> persistenceStrategy) {
+		super();
+		this.persistenceStrategy = persistenceStrategy;
+	}
+
 	public void insert(T t){
-		if(find(t) == null)
+		if(find(t.getId()) == null)
 			persistenceStrategy.insert(t);
 		else{
 			update(t);
@@ -30,8 +35,8 @@ public abstract class Dao <T extends ModelToPersist>{
 		return persistenceStrategy.findAll();
 	}
 	
-	public T find(T t){
-		return persistenceStrategy.find(t);
+	public T find(int id){
+		return persistenceStrategy.find(id);
 	}
 
 	public PersistenceStrategy<T> getPersistenceStrategy() {
