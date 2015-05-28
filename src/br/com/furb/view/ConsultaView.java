@@ -31,22 +31,21 @@ public class ConsultaView<T extends ModelToPersist> extends JFrame {
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(new Rectangle(0, 0, 600, 400));
-		contentPane.setLayout(null);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		setContentPane(contentPane);
 
 		iconBar.setBounds(10, 0, 574, 46);
 		contentPane.add(iconBar);
+
+		updateTable();
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 57, 574, 293);
-		
 		scrollPane.setViewportView(table);
 		contentPane.add(scrollPane);
 		
-		updateTable();
-		
+		contentPane.setLayout(null);
 		this.setVisible(true);
 		this.setEnabled(true);
 	}
