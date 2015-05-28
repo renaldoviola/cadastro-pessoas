@@ -1,15 +1,18 @@
 package br.com.furb.dao;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
+
 import br.com.furb.model.Pessoa;
-import br.com.furb.persistence.FilePersistence;
-import static org.junit.Assert.*;
 
 public class TestPessoaDao {
 
 	@Test
 	public void shouldInsertPessoa() {
-		PessoaDao dao = new PessoaDao(new FilePersistence<Pessoa>());
+		PessoaDao dao = PessoaDao.getInstance();
 		Pessoa pessoa = new Pessoa(1234567, "Pessoa da Silva", "silva@gmail.com.br", "123098123098");
 		dao.insert(pessoa);
 		assertNotNull(dao.find(pessoa.getId()));
@@ -17,7 +20,7 @@ public class TestPessoaDao {
 	
 	@Test(expected = Exception.class)
 	public void shouldntInsertDuplicatePessoa() {
-		PessoaDao dao = new PessoaDao(new FilePersistence<Pessoa>());
+		PessoaDao dao = PessoaDao.getInstance();
 		Pessoa pessoa = new Pessoa(8888888, "Pessoa da Silva", "silva@gmail.com.br", "123098123098");
 		dao.insert(pessoa);
 		dao.insert(pessoa);
@@ -25,7 +28,7 @@ public class TestPessoaDao {
 	
 	@Test
 	public void shouldDeletePessoa() {
-		PessoaDao dao = new PessoaDao(new FilePersistence<Pessoa>());
+		PessoaDao dao = PessoaDao.getInstance();
 		Pessoa pessoa = new Pessoa(7777777, "Pessoa da Silva", "silva@gmail.com.br", "123098123098");
 		dao.insert(pessoa);
 		dao.delete(pessoa);
@@ -34,7 +37,7 @@ public class TestPessoaDao {
 
 	@Test
 	public void shouldUpdatePessoa() {
-		PessoaDao dao = new PessoaDao(new FilePersistence<Pessoa>());
+		PessoaDao dao = PessoaDao.getInstance();
 		Pessoa pessoa = new Pessoa(9999999, "teste", "silva@gmail.com.br", "123098123098");
 		dao.insert(pessoa);
 		
