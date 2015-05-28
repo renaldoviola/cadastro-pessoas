@@ -1,4 +1,4 @@
-package br.com.furb.view.consulta;
+package br.com.furb.view;
 
 import java.awt.Rectangle;
 import java.util.List;

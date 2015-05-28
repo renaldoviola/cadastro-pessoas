@@ -1,4 +1,4 @@
-package br.com.furb.view.pessoa;
+package br.com.furb.view;
 
 import java.awt.Rectangle;
 
