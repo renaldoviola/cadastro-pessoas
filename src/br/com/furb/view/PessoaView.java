@@ -14,9 +14,10 @@ public class PessoaView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField fieldNome;
-	private JTextField fieldCustoUnitario;
-	private JTextField fieldVolume;
+	private JTextField nomeField;
+	private JTextField emailField;
+	private JTextField cpfField;
+	private JTextField rgField;
 	
 	/**
 	 * Create the frame.
@@ -50,33 +51,43 @@ public class PessoaView extends JFrame {
 		contentPane.add(panelCadastro);
 		panelCadastro.setLayout(null);
 		
-		fieldNome = new JTextField();
-		fieldNome.setBounds(165, 11, 342, 20);
-		panelCadastro.add(fieldNome);
-		fieldNome.setColumns(10);
+		nomeField = new JTextField();
+		nomeField.setBounds(165, 11, 342, 20);
+		panelCadastro.add(nomeField);
+		nomeField.setColumns(10);
 		
-		fieldCustoUnitario = new JTextField();
-		fieldCustoUnitario.setBounds(165, 39, 121, 20);
-		panelCadastro.add(fieldCustoUnitario);
-		fieldCustoUnitario.setColumns(10);
-		fieldCustoUnitario.setText("");
+		emailField = new JTextField();
+		emailField.setBounds(165, 39, 121, 20);
+		panelCadastro.add(emailField);
+		emailField.setColumns(10);
+		emailField.setText("");
 		
-		fieldVolume = new JTextField();
-		fieldVolume.setBounds(165, 67, 121, 20);
-		panelCadastro.add(fieldVolume);
-		fieldVolume.setColumns(10);
-		fieldVolume.setText("");
+		cpfField = new JTextField();
+		cpfField.setBounds(165, 67, 121, 20);
+		panelCadastro.add(cpfField);
+		cpfField.setColumns(10);
+		cpfField.setText("");
 		
 		JLabel lblNome = new JLabel("Nome:");
 		lblNome.setBounds(63, 11, 73, 20);
 		panelCadastro.add(lblNome);
 		
-		JLabel lblCustoUnitario = new JLabel("Custo Unit.:");
+		JLabel lblCustoUnitario = new JLabel("E-mail:");
 		lblCustoUnitario.setBounds(63, 42, 85, 14);
 		panelCadastro.add(lblCustoUnitario);
 		
-		JLabel lblVolume = new JLabel("Volume (Lts).:");
-		lblVolume.setBounds(63, 69, 100, 14);
+		JLabel lblVolume = new JLabel("CPF:");
+		lblVolume.setBounds(63, 70, 100, 14);
 		panelCadastro.add(lblVolume);
+		
+		JLabel lblRg = new JLabel("RG:");
+		lblRg.setBounds(63, 96, 100, 14);
+		panelCadastro.add(lblRg);
+		
+		rgField = new JTextField();
+		rgField.setText("");
+		rgField.setColumns(10);
+		rgField.setBounds(165, 93, 121, 20);
+		panelCadastro.add(rgField);
 	}
 }

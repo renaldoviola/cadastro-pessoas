@@ -1,5 +1,7 @@
 package br.com.furb.model;
 
+import br.com.furb.view.util.ConsultaViewColumn;
+
 public class Pessoa implements ModelToPersist {
 
 	private String nome;
@@ -22,27 +24,38 @@ public class Pessoa implements ModelToPersist {
 		return rg;
 	}
 	
+	@ConsultaViewColumn(nome="CPF", posicao=2)
 	public String getCpf() {
 		return cpf;
 	}
+	
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
+	
+	@ConsultaViewColumn(nome="RG", posicao=3)
 	public int getRg() {
 		return rg;
 	}
+	
 	public void setRg(int rg) {
 		this.rg = rg;
 	}
+	
+	@ConsultaViewColumn(nome="Nome", posicao=0)
 	public String getNome() {
 		return nome;
 	}
+	
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
+	@ConsultaViewColumn(nome="E-mail", posicao=1)
 	public String getEmail() {
 		return email;
 	}
+	
 	public void setEmail(String email) {
 		this.email = email;
 	}
