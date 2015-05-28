@@ -1,12 +1,15 @@
 package br.com.furb.view;
 
 import java.awt.Rectangle;
+import java.text.ParseException;
 
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.MaskFormatter;
 
 import br.com.furb.view.util.DefaultIconBar;
 
@@ -21,7 +24,6 @@ public class PessoaView extends JFrame {
 	
 	/**
 	 * Create the frame.
-	 * 
 	 * @param iconBar
 	 */
 	public PessoaView(DefaultIconBar iconBar) {
@@ -57,16 +59,30 @@ public class PessoaView extends JFrame {
 		nomeField.setColumns(10);
 		
 		emailField = new JTextField();
-		emailField.setBounds(165, 39, 121, 20);
+		emailField.setBounds(165, 39, 342, 20);
 		panelCadastro.add(emailField);
 		emailField.setColumns(10);
 		emailField.setText("");
 		
-		cpfField = new JTextField();
+		try {
+			cpfField = new JFormattedTextField(new MaskFormatter("###.###.###-##"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		cpfField.setBounds(165, 67, 121, 20);
 		panelCadastro.add(cpfField);
 		cpfField.setColumns(10);
 		cpfField.setText("");
+		
+		try {
+			rgField = new JFormattedTextField(new MaskFormatter("#.###.###"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		rgField.setText("");
+		rgField.setColumns(10);
+		rgField.setBounds(165, 93, 121, 20);
+		panelCadastro.add(rgField);
 		
 		JLabel lblNome = new JLabel("Nome:");
 		lblNome.setBounds(63, 11, 73, 20);
@@ -83,11 +99,29 @@ public class PessoaView extends JFrame {
 		JLabel lblRg = new JLabel("RG:");
 		lblRg.setBounds(63, 96, 100, 14);
 		panelCadastro.add(lblRg);
-		
-		rgField = new JTextField();
-		rgField.setText("");
-		rgField.setColumns(10);
-		rgField.setBounds(165, 93, 121, 20);
-		panelCadastro.add(rgField);
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public JPanel getContentPane() {
+		return contentPane;
+	}
+
+	public JTextField getNomeField() {
+		return nomeField;
+	}
+
+	public JTextField getEmailField() {
+		return emailField;
+	}
+
+	public JTextField getCpfField() {
+		return cpfField;
+	}
+
+	public JTextField getRgField() {
+		return rgField;
 	}
 }
