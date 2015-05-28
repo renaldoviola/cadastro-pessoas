@@ -26,6 +26,8 @@ public class ConsultaView<T extends ModelToPersist> extends JFrame {
 	 */
 	public ConsultaView(String formName, Dao<T> dao, DefaultIconBarConsulta iconBar) {
 		super(formName);
+
+		this.dao = dao;
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(new Rectangle(0, 0, 600, 400));
