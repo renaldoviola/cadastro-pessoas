@@ -2,17 +2,13 @@ package br.com.furb.dao;
 
 import java.util.List;
 
+import br.com.furb.boot.Boot;
 import br.com.furb.model.ModelToPersist;
 import br.com.furb.persistence.PersistenceStrategy;
 
 public abstract class Dao <T extends ModelToPersist>{
 
-	private PersistenceStrategy<T> persistenceStrategy;
-	
-	public Dao(PersistenceStrategy<T> persistenceStrategy) {
-		super();
-		this.persistenceStrategy = persistenceStrategy;
-	}
+	private PersistenceStrategy<T> persistenceStrategy = Boot.getDefaultPersistenceStrategy();
 
 	public void insert(T t){
 		if(find(t.getId()) == null)

@@ -11,6 +11,7 @@ public class PessoaController {
 	private PessoaDao dao;
 	
 	public PessoaController() {
+		this.dao = PessoaDao.getInstance();
 		this.view = new PessoaView(getViewActions());
 	}
 	

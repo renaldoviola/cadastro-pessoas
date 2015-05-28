@@ -2,6 +2,10 @@ package br.com.furb.boot;
 
 import javax.swing.UIManager;
 
+import br.com.furb.model.ModelToPersist;
+import br.com.furb.persistence.FilePersistence;
+import br.com.furb.persistence.PersistenceStrategy;
+
 import com.seaglasslookandfeel.SeaGlassLookAndFeel;
 
 public class Boot {
@@ -16,6 +20,10 @@ public class Boot {
 	      e.printStackTrace();
 	    }
 	    
+	}
+	
+	public static <T extends ModelToPersist> PersistenceStrategy<T> getDefaultPersistenceStrategy(){
+		return new FilePersistence<T>();
 	}
 
 	public static void main(String[] args) {
