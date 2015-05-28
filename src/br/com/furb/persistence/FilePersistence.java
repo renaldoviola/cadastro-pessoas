@@ -32,5 +32,4 @@ public class FilePersistence<T extends ModelToPersist> implements PersistenceStr
 		return null;
 	}
 	
-	
 }
