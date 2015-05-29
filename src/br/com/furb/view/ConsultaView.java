@@ -1,6 +1,7 @@
 package br.com.furb.view;
 
 import java.awt.Rectangle;
+import java.io.Serializable;
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -10,11 +11,10 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 
 import br.com.furb.dao.Dao;
-import br.com.furb.model.ModelToPersist;
 import br.com.furb.view.util.DefaultIconBarConsulta;
 import br.com.furb.view.util.ReflectionTableModel;
 
-public class ConsultaView<T extends ModelToPersist> extends JFrame {
+public class ConsultaView<T extends Serializable> extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane = new JPanel();

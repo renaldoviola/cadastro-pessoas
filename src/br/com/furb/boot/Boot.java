@@ -1,9 +1,10 @@
 package br.com.furb.boot;
 
+import java.io.Serializable;
+
 import javax.swing.UIManager;
 
 import br.com.furb.controller.PessoaController;
-import br.com.furb.model.ModelToPersist;
 import br.com.furb.persistence.FilePersistence;
 import br.com.furb.persistence.PersistenceStrategy;
 
@@ -23,8 +24,7 @@ public class Boot {
 		new PessoaController();
 	    
 	}
-	
-	public static <T extends ModelToPersist> PersistenceStrategy<T> getDefaultPersistenceStrategy(){
+	public static <T extends Serializable> PersistenceStrategy<T> getDefaultPersistenceStrategy(){
 		return new FilePersistence<T>();
 	}
 

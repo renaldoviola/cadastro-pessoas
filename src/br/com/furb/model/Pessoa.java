@@ -1,9 +1,12 @@
 package br.com.furb.model;
 
+import java.io.Serializable;
+
 import br.com.furb.view.util.ConsultaViewColumn;
 
-public class Pessoa implements ModelToPersist {
+public class Pessoa implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private String nome;
 	private String email;
 	private String cpf;
@@ -19,11 +22,6 @@ public class Pessoa implements ModelToPersist {
 	
 	public Pessoa() {}
 
-	@Override
-	public int getId() {
-		return rg;
-	}
-	
 	@ConsultaViewColumn(nome="CPF", posicao=2)
 	public String getCpf() {
 		return cpf;
