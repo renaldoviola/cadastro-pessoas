@@ -1,17 +1,17 @@
 package br.com.furb.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 import br.com.furb.boot.Boot;
-import br.com.furb.model.ModelToPersist;
 import br.com.furb.persistence.PersistenceStrategy;
 
-public abstract class Dao <T extends ModelToPersist>{
+public abstract class Dao <T extends Serializable>{
 
 	private PersistenceStrategy<T> persistenceStrategy = Boot.getDefaultPersistenceStrategy();
 
 	public void insert(T t){
-		if(find(t.getId()) == null)
+		if(find(t) == null)
 			persistenceStrategy.insert(t);
 		else{
 			update(t);
@@ -31,8 +31,12 @@ public abstract class Dao <T extends ModelToPersist>{
 		return persistenceStrategy.findAll();
 	}
 	
-	public T find(int id){
-		return persistenceStrategy.find(id);
+	public T find(T object){
+		for(T t : findAll()){
+			if(t.equals(object))
+				return t;
+		}
+		return null;
 	}
 
 	public PersistenceStrategy<T> getPersistenceStrategy() {
