@@ -2,10 +2,10 @@ package br.com.furb.boot;
 
 import javax.swing.UIManager;
 
-import br.com.furb.controller.PessoaController;
 import br.com.furb.model.ModelToPersist;
 import br.com.furb.persistence.FilePersistence;
 import br.com.furb.persistence.PersistenceStrategy;
+import br.com.furb.view.PessoaView;
 
 import com.seaglasslookandfeel.SeaGlassLookAndFeel;
 
@@ -20,7 +20,7 @@ public class Boot {
 	      e.printStackTrace();
 	    }
 		
-		new PessoaController();
+		new PessoaView();
 	    
 	}
 	
