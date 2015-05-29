@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import javax.swing.UIManager;
 
-import br.com.furb.model.ModelToPersist;
 import br.com.furb.persistence.FilePersistence;
 import br.com.furb.persistence.PersistenceStrategy;
 import br.com.furb.view.PessoaView;
