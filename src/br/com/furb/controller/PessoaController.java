@@ -14,62 +14,36 @@ public class PessoaController {
 	
 	public PessoaController() {
 		this.dao = PessoaDao.getInstance();
-		this.view = new PessoaView(getViewActions());
 	}
 	
-	private DefaultIconBar getViewActions(){
-		return new DefaultIconBar() {
-			private static final long serialVersionUID = 1L;
+	public void save(Pessoa pessoa) {
+		String erros = validaPessoa(pessoa);
+		if (erros == null) {
+			dao.insert(pessoa);
+		} else {
+			throw new IllegalArgumentException(erros);
+		}
+	}
 
-			@Override
-			public void save() {
-				Pessoa pessoa = new Pessoa();
-				dao.insert(pessoa);
-				//TODO: 
-			}
-			
-			@Override
-			public void newRegister() {
-				clearFields();
-			}
-
-			@Override
-			public void find() {
-				new ConsultaView<Pessoa>("Consulta de Pessoas", dao, getConsultaViewActions());
-			}
-			
-			private void clearFields() {
-				view.getNomeField().setText("");
-				view.getEmailField().setText("");
-				view.getCpfField().setText("");
-				view.getRgField().setText("");
-			}
-		};
+	private String validaPessoa(Pessoa pessoa) {
+		StringBuilder strBuilder = new StringBuilder();
+		if (pessoa.getNome() == null || pessoa.getNome().isEmpty()) {
+			if (strBuilder.toString() == null) strBuilder.append("Houveram erros no processo:");
+			strBuilder.append("\nO campo nome deve ser informado!");
+		} else if (pessoa.getEmail() == null || pessoa.getEmail().isEmpty()) {
+			if (strBuilder.toString() == null) strBuilder.append("Houveram erros no processo:");
+			strBuilder.append("\nO campo e-mail deve ser informado!");
+		} else if (pessoa.getCpf() == null || pessoa.getCpf().isEmpty()) {
+			if (strBuilder.toString() == null) strBuilder.append("Houveram erros no processo:");
+			strBuilder.append("\nO campo cpf deve ser informado!");
+		} else if (pessoa.getRg() == 0) {
+			strBuilder.append("\nO campo rg deve ser informado!");
+		}
+		return strBuilder.toString();
 	}
 	
-	private DefaultIconBarConsulta getConsultaViewActions() {
-		return new DefaultIconBarConsulta() {
-			
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public void ok() {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void exit() {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void delete() {
-				// TODO Auto-generated method stub
-				
-			}
-		};
+	public PessoaDao getDao() {
+		return dao;
 	}
 	
 }

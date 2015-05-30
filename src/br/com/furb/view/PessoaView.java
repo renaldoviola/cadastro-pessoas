@@ -11,7 +11,10 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 
+import br.com.furb.controller.PessoaController;
+import br.com.furb.model.Pessoa;
 import br.com.furb.view.util.DefaultIconBar;
+import br.com.furb.view.util.DefaultIconBarConsulta;
 
 public class PessoaView extends JFrame {
 
@@ -21,12 +24,13 @@ public class PessoaView extends JFrame {
 	private JTextField emailField;
 	private JTextField cpfField;
 	private JTextField rgField;
+	private PessoaController controller;
 	
 	/**
 	 * Create the frame.
 	 * @param iconBar
 	 */
-	public PessoaView(DefaultIconBar iconBar) {
+	public PessoaView() {
 		
 		setTitle("Cadastro de Pessoas");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -37,6 +41,36 @@ public class PessoaView extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		controller = new PessoaController();
+		
+		DefaultIconBar iconBar = new DefaultIconBar() {
+			
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void save() {
+				Pessoa pessoa = new Pessoa(Integer.parseInt(removeMask(rgField.getText())), nomeField.getText(), 
+						emailField.getText(), removeMask(cpfField.getText()));
+				controller.save(pessoa);
+			}
+			
+			@Override
+			public void newRegister() {
+				clearFields();
+			}
+			
+			@Override
+			public void find() {
+				new ConsultaView<Pessoa>("Consulta de Pessoas", controller.getDao(), getConsultaViewActions());
+			}
+			
+			private void clearFields() {
+				getNomeField().setText("");
+				getEmailField().setText("");
+				getCpfField().setText("");
+				getRgField().setText("");
+			}
+		};
 		iconBar.setBounds(0, 0, 584, 42);
 		contentPane.add(iconBar);
 		
@@ -99,6 +133,33 @@ public class PessoaView extends JFrame {
 		JLabel lblRg = new JLabel("RG:");
 		lblRg.setBounds(63, 96, 100, 14);
 		panelCadastro.add(lblRg);
+	}
+	
+	private String removeMask(String value) {
+		value = value.replace("-", "");
+		return value.replace(".", "");
+	}
+	
+	private DefaultIconBarConsulta getConsultaViewActions() {
+		return new DefaultIconBarConsulta() {
+			
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void ok() {
+				// TODO Auto-generated method stub
+			}
+			
+			@Override
+			public void exit() {
+				// TODO Auto-generated method stub
+			}
+			
+			@Override
+			public void delete() {
+				// TODO Auto-generated method stub
+			}
+		};
 	}
 
 	public static long getSerialversionuid() {
