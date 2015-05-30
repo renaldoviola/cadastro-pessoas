@@ -58,4 +58,10 @@ public class Pessoa implements Serializable {
 		this.email = email;
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		Pessoa pessoa = (Pessoa) obj;
+		return getRg() == pessoa.getRg();
+	}
+	
 }

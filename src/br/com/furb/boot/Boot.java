@@ -24,10 +24,11 @@ public class Boot {
 		new PessoaController();
 	    
 	}
+	
 	public static <T extends Serializable> PersistenceStrategy<T> getDefaultPersistenceStrategy(){
 		return new FilePersistence<T>();
 	}
-
+	
 	public static void main(String[] args) {
 		try{
 			new Boot();
