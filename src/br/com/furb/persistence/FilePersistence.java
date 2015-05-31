@@ -24,7 +24,9 @@ public class FilePersistence<T extends Serializable> implements PersistenceStrat
 		this.dataFile = new DataFile(file);
 	}
 	
-	public FilePersistence() {}
+	public FilePersistence() {
+		this.dataFile = new DataFile();
+	}
 	
 	@Override
 	public void insert(T t) {
@@ -61,6 +63,8 @@ public class FilePersistence<T extends Serializable> implements PersistenceStrat
 		public DataFile(File file) {
 			this.file = file;
 		}
+		
+		public DataFile() {	}
 
 		private synchronized void updateList(List<T> objects){
 			FileOutputStream fos = null;

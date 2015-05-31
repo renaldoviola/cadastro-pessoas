@@ -31,7 +31,7 @@ public class Pessoa implements Serializable {
 		this.cpf = cpf;
 	}
 	
-	@ConsultaViewColumn(nome="RG", posicao=3)
+	@ConsultaViewColumn(nome="RG", posicao=0)
 	public int getRg() {
 		return rg;
 	}
@@ -40,7 +40,7 @@ public class Pessoa implements Serializable {
 		this.rg = rg;
 	}
 	
-	@ConsultaViewColumn(nome="Nome", posicao=0)
+	@ConsultaViewColumn(nome="Nome", posicao=1)
 	public String getNome() {
 		return nome;
 	}
@@ -49,7 +49,7 @@ public class Pessoa implements Serializable {
 		this.nome = nome;
 	}
 	
-	@ConsultaViewColumn(nome="E-mail", posicao=1)
+	@ConsultaViewColumn(nome="E-mail", posicao=3)
 	public String getEmail() {
 		return email;
 	}

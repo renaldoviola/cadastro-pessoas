@@ -23,7 +23,10 @@ public abstract class Dao <T extends Serializable>{
 	}
 	
 	public void insert(T t){
-		persistenceStrategy.insert(t);
+		if(find(t) == null)
+			persistenceStrategy.insert(t);
+		else
+			update(t);
 	}
 	
 	public void update(T t){

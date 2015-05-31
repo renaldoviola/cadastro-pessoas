@@ -12,6 +12,8 @@ import com.seaglasslookandfeel.SeaGlassLookAndFeel;
 
 public class Boot {
 	
+	private PessoaView mainView;
+	
 	public Boot() {
 	    
 		try{
@@ -21,8 +23,8 @@ public class Boot {
 	      e.printStackTrace();
 	    }
 		
-		new PessoaView();
-	    
+		mainView = new PessoaView();
+		mainView.setVisible(true);
 	}
 	
 	public static <T extends Serializable> PersistenceStrategy<T> getDefaultPersistenceStrategy(){

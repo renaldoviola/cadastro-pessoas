@@ -8,12 +8,11 @@ import javax.swing.table.AbstractTableModel;
 public class ReflectionTableModel extends AbstractTableModel {
 	
 	private static final long serialVersionUID = 1L;
-	private final List<?> lista;
-	private final Class<?> classe;
+	private List<?> lista;
+	private Class<?> classe;
 
 	public ReflectionTableModel(List<?> lista) {
-		this.lista = lista;
-		this.classe = lista.isEmpty() ? Object.class : lista.get(0).getClass();
+		updateModel(lista);
 	}
 	
 	@Override
@@ -58,5 +57,9 @@ public class ReflectionTableModel extends AbstractTableModel {
 		return "";
 	}
 	
+	public void updateModel(List<?> lista){
+		this.lista = lista;
+		this.classe = lista.isEmpty() ? Object.class : lista.get(0).getClass();
+	}
 	
 }

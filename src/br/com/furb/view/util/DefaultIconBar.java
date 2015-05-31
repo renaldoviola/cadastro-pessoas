@@ -58,29 +58,29 @@ public abstract class DefaultIconBar extends JPanel {
 		});
 		add(lblSave);
 		
-		final JLabel lblFind = new JLabel();
-		lblFind.setBounds(10, 10, 37, 19);
-		lblFind.setIcon(new ImageIcon(DefaultIconBar.class.getResource("/icons/find.png")));
-		lblFind.addMouseListener(new MouseAdapter() {
+		final JLabel lblDelete = new JLabel();
+		lblDelete.setBounds(10, 10, 37, 19);
+		lblDelete.setIcon(new ImageIcon(DefaultIconBar.class.getResource("/icons/delete.png")));
+		lblDelete.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				find();
+				delete();
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				lblFind.setIcon(new ImageIcon(new ImageIcon(DefaultIconBar.class.getResource("/icons/find.png")).getImage().getScaledInstance(37, 37, Image.SCALE_SMOOTH)));
+				lblDelete.setIcon(new ImageIcon(new ImageIcon(DefaultIconBar.class.getResource("/icons/delete.png")).getImage().getScaledInstance(37, 37, Image.SCALE_SMOOTH)));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				lblFind.setIcon(new ImageIcon(new ImageIcon(DefaultIconBar.class.getResource("/icons/find.png")).getImage().getScaledInstance(32, 32, Image.SCALE_SMOOTH)));
+				lblDelete.setIcon(new ImageIcon(new ImageIcon(DefaultIconBar.class.getResource("/icons/delete.png")).getImage().getScaledInstance(32, 32, Image.SCALE_SMOOTH)));
 			}			
 		});
-		add(lblFind);
+		add(lblDelete);
 		
 	}
 	
 	public abstract void newRegister();
 	public abstract void save();
-	public abstract void find();
+	public abstract void delete();
 	
 }

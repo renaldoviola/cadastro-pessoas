@@ -1,49 +1,47 @@
 package br.com.furb.controller;
 
+import java.util.List;
+
 import br.com.furb.dao.PessoaDao;
 import br.com.furb.model.Pessoa;
-import br.com.furb.view.ConsultaView;
-import br.com.furb.view.PessoaView;
-import br.com.furb.view.util.DefaultIconBar;
-import br.com.furb.view.util.DefaultIconBarConsulta;
 
 public class PessoaController {
 	
-	private PessoaView view;
 	private PessoaDao dao;
 	
 	public PessoaController() {
 		this.dao = PessoaDao.getInstance();
 	}
 	
-	public void save(Pessoa pessoa) {
+	public void save(Pessoa pessoa) throws IllegalArgumentException {
 		String erros = validaPessoa(pessoa);
-		if (erros == null) {
+		if (erros == null || erros.isEmpty())
 			dao.insert(pessoa);
-		} else {
+		else
 			throw new IllegalArgumentException(erros);
-		}
+	}
+	
+	public void delete(Pessoa pessoa) {
+		if(pessoa != null)
+			dao.delete(pessoa);
 	}
 
 	private String validaPessoa(Pessoa pessoa) {
+		
 		StringBuilder strBuilder = new StringBuilder();
-		if (pessoa.getNome() == null || pessoa.getNome().isEmpty()) {
-			if (strBuilder.toString() == null) strBuilder.append("Houveram erros no processo:");
+		if (pessoa.getNome() == null || pessoa.getNome().isEmpty())
 			strBuilder.append("\nO campo nome deve ser informado!");
-		} else if (pessoa.getEmail() == null || pessoa.getEmail().isEmpty()) {
-			if (strBuilder.toString() == null) strBuilder.append("Houveram erros no processo:");
+		else if (pessoa.getEmail() == null || pessoa.getEmail().isEmpty())
 			strBuilder.append("\nO campo e-mail deve ser informado!");
-		} else if (pessoa.getCpf() == null || pessoa.getCpf().isEmpty()) {
-			if (strBuilder.toString() == null) strBuilder.append("Houveram erros no processo:");
+		else if (pessoa.getCpf() == null || pessoa.getCpf().trim().isEmpty())
 			strBuilder.append("\nO campo cpf deve ser informado!");
-		} else if (pessoa.getRg() == 0) {
+		else if (pessoa.getRg() == 0)
 			strBuilder.append("\nO campo rg deve ser informado!");
-		}
+		
 		return strBuilder.toString();
 	}
 	
-	public PessoaDao getDao() {
-		return dao;
+	public List<Pessoa> findAll(){
+		return dao.findAll();
 	}
-	
 }
